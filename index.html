@@ -7,16 +7,14 @@
 <body>
   <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay"
     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/7649914&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
-
+  <button class="submit">Submit</button>
 
   <section>
     <p> ¿Qué horas son, mi corazón?</p>
     <p>Te lo</p>
 
-    <form action="" method="get" class="challenge_submit">
-      <button class="submit" type="submit">Submit</button>
     <p>
-      <select name="words" id="first-challenge">
+      <select data-answer="dije" name="words" class="challenge">
         <option value=""></option>
         <option value="dije">dije</option>
         <option value="dijo">dijo</option>
@@ -31,7 +29,7 @@
     <p>Doce de</p>
 
     <p>
-      <select name="words" id="second-challenge">
+      <select data-answer="la noche" name="words" class="challenge">
         <option value=""></option>
         <option value="el noche">el noche</option>
         <option value="las noches">las noches</option>
@@ -45,7 +43,7 @@
     <p>Once de la noche en Managua, Nicaragua</p>
 
     <p>
-      <select name="words" id="third-challenge">
+      <select data-answer="Me gustan" name="words" class="challenge">
         <option value=""></option>
         <option value="Me gusta">Me gusta</option>
         <option value="Te gusta">Te gusta</option>
@@ -60,7 +58,7 @@
     <p>Me gusta</p>
 
     <p>
-      <select name="words" id="fourth-challenge">
+      <select data-answer="el viento" name="words" class="challenge">
         <option value=""></option>
         <option value="el viento">el viento</option>
         <option value="el evento">el evento</option>
@@ -68,7 +66,6 @@
         <option value="la venta">la venta</option>
       </select>
     </p>
-    </form>
 
     <p>, me gustas tú</p>
     <p>Me gusta soñar, me gustas tú</p>
@@ -76,7 +73,7 @@
     <p>¿Qué</p>
 
     <p>
-      <select name="words" id="fifth-challenge">
+      <select data-answer="voy" name="words" class="challenge">
         <option value=""></option>
         <option value="vas">vas</option>
         <option value="voy">voy</option>
@@ -92,7 +89,7 @@
     <p>Me gusta</p>
 
     <p>
-      <select name="words" id="sixth-challenge">
+      <select data-answer="la moto" name="words" class="challenge">
         <option value=""></option>
         <option value="el otro">el otro</option>
         <option value="la foto">la foto</option>
@@ -104,61 +101,160 @@
     <p>, me gustas tú</p>
     <p>Me gusta correr, me gustas tú</p>
     <p>Me gusta la lluvia, me gustas tú</p>
-    <p>Me gusta volver, me gustas tú</p>
+    <p>Me gusta</p>
+
+    <p>
+      <select data-answer="volver" name="words" class="challenge">
+        <option value=""></option>
+        <option value="solver">solver</option>
+        <option value="volver">volver</option>
+        <option value="volar">volar</option>
+        <option value="viajar">viajar</option>
+      </select>
+    </p>
+
+    <p>me gustas tú</p>
     <p>Me gusta marihuana, me gustas tú</p>
     <p>Me gusta Colombiana, me gustas tú</p>
-    <p>Me gusta la montaña, me gustas tú</p>
+    <p>Me gusta la</p>
+
+    <p>
+      <select data-answer="montaña" name="words" class="challenge">
+        <option value=""></option>
+        <option value="mañana">mañana</option>
+        <option value="manzana">manzana</option>
+        <option value="montaña">montaña</option>
+        <option value="mamá">mamá</option>
+      </select>
+    </p>
+
+    <p>, me gustas tú</p>
     <p>Me gusta la noche (me gustas tú)</p>
 
     <p>¿Qué voy a hacer?, je ne sais pas</p>
     <p>¿Qué voy a hacer?, je ne sais plus</p>
     <p>¿Qué voy a hacer?, je suis perdu</p>
-    <p>¿Qué horas son, mi corazón?</p>
+    <p>¿Qué horas son,</p>
+
+    <p>
+      <select data-answer="mi" name="words" class="challenge">
+        <option value=""></option>
+        <option value="me">me</option>
+        <option value="ti">ti</option>
+        <option value="el">el</option>
+        <option value="mi">mi</option>
+      </select>
+    </p>
+
+    <p>corazón?</p>
     <p>Doce, un minuto</p>
     <p>Me gusta la cena, me gustas tú</p>
-    <p>Me gusta la vecina, me gustas tú (Radio Reloj)</p>
+    <p>Me gusta</p>
+
+    <p>
+      <select data-answer="la" name="words" class="challenge">
+        <option value=""></option>
+        <option value="una">una</option>
+        <option value="la">la</option>
+        <option value="el">el</option>
+        <option value="un">un</option>
+      </select>
+    </p>
+
+    <p>vecina, me gustas tú (Radio Reloj)</p>
     <p>Me gusta su cocina, me gustas tú (una de la mañana)</p>
     <p>Me gusta camelar, me gustas tú</p>
-    <p>Me gusta la guitarra, me gustas tú</p>
+    <p>Me gusta</p>
+
+    <p>
+      <select data-answer="la guitarra" name="words" class="challenge">
+        <option value=""></option>
+        <option value="la guitarra">la guitarra</option>
+        <option value="la guerra">la guerra</option>
+        <option value="el género">el género</option>
+        <option value="el gato">el gato</option>
+      </select>
+    </p>
+
+    <p>me gustas tú</p>
     <p>Me gusta el reggae, me gustas tú</p>
     <p>¿Qué voy a hacer?, je ne sais pas</p>
     <p>¿Qué voy a hacer?, je ne sais plus</p>
     <p>¿Qué voy a hacer?, je suis perdu</p>
     <p>¿Qué horas son, mi corazón?</p>
-    <p>Me gusta la canela, me gustas tú</p>
+    <p>Me gusta</p>
+
+    <p>
+      <select data-answer="la canela" name="words" class="challenge">
+        <option value=""></option>
+        <option value="la canela">canela</option>
+        <option value="el camello">camello</option>
+        <option value="la candela">la candela</option>
+        <option value="la cánula">la cánula</option>
+      </select>
+    </p>
+
+
+    <p>, me gustas tú</p>
     <p>Me gusta el fuego, me gustas tú</p>
-    Me gusta menear, me gustas tú
-    Me gusta La Coruña, me gustas tú
-    Me gusta Malasaña, me gustas tú
-    Me gusta la castaña, me gustas tú
-    Me gusta Guatemala, me gustas tú
-    ¿Qué voy a hacer?, je ne sais pas
-¿Qué voy a hacer?, je ne sais plus
-¿Qué voy a hacer?, je suis perdu
-¿Qué horas son, mi corazón?
-¿Qué voy a hacer?, je ne sais pas
-¿Qué voy a hacer?, je ne sais plus
-¿Qué voy a hacer?, je suis perdu
-¿Qué horas son, mi corazón?
-¿Qué voy a hacer?, je ne sais pas
-¿Qué voy a hacer?, je ne sais plus
-¿Qué voy a hacer?, je suis perdu
-¿Qué horas son, mi corazón?
-¿Qué horas son, mi corazón?
-¿Qué horas son, mi corazón?
-¿Qué horas son, mi corazón?
-¿Qué horas son, mi corazón?
-¿Qué horas son, mi corazón?
-Cuatro de la mañana
-A la bin, a la ban, a la bin-bon-bam
-A la bin, a la ban, a la bin-bon-bam
-Obladí obladá obladí-da-da
-A la bin, a la ban, a la bin-bon-bam
-Radio reloj
-Cinco de la mañana
-No todo lo que es oro brilla
-Remedio chino e infalible
+    <p>Me gusta menear, me gustas tú</p>
+    <p>Me gusta La Coruña, me gustas tú</p>
+    <p>Me gusta Malasaña, me gustas tú</p>
+    <p>Me gusta la</p>
+    
+    <p>
+      <select data-answer="canstaña" name="words" class="challenge">
+        <option value=""></option>
+        <option value="catana">catana</option>
+        <option value="castaña">castaña</option>
+        <option value="calle">calle</option>
+        <option value="canela">canela</option>
+      </select>
+    </p>
+    
+    <p>, me gustas tú</p>
+    <p>Me gusta Guatemala, me gustas tú</p>
+    <p>¿Qué voy a hacer?, je ne sais pas</p>
+    <p>¿Qué voy a hacer?, je ne sais plus</p>
+    <p>¿Qué voy a hacer?, je suis perdu</p>
+    <p>¿Qué horas son, mi</p>
+    
+    <p>
+      <select data-answer="corazón" name="words" class="challenge">
+        <option value=""></option>
+        <option value="jamón">jamón</option>
+        <option value="castaña">castaña</option>
+        <option value="ligazón">ligazón</option>
+        <option value="corazón">corazón</option>
+      </select>
+    </p>
+    
+    <p>?</p>
+    <p>¿Qué voy a hacer?, je ne sais pas</p>
+    <p>¿Qué voy a hacer?, je ne sais plus</p>
+    <p>¿Qué voy a hacer?, je suis perdu</p>
+    <p>¿Qué horas son, mi corazón?</p>
+    <p>¿Qué voy a hacer?, je ne sais pas</p>
+    <p>¿Qué voy a hacer?, je ne sais plus</p>
+    <p>¿Qué voy a hacer?, je suis perdu</p>
+    <p>¿Qué horas son, mi corazón?</p>
+    <p>¿Qué horas son, mi corazón?</p>
+    <p>¿Qué horas son, mi corazón?</p>
+    <p>¿Qué horas son, mi corazón?</p>
+    <p>¿Qué horas son, mi corazón?</p>
+    <p>¿Qué horas son, mi corazón?</p>
+    <p>Cuatro de la mañana</p>
+    <p>A la bin, a la ban, a la bin-bon-bam</p>
+    <p>A la bin, a la ban, a la bin-bon-bam</p>
+    <p>Obladí obladá obladí-da-da</p>
+    <p>A la bin, a la ban, a la bin-bon-bam</p>
+    <p>Radio reloj</p>
+    <p>Cinco de la mañana</p>
+    <p>No todo lo que es oro brilla</p>
+    <p>Remedio chino e infalible</p>
   </section>
+
+  <script src="./script.js"></script>
 </body>
 
 </html>
