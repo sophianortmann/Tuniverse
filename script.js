@@ -14,4 +14,8 @@ function solution(event) {
     selectedAnswers.forEach(checkAnswer);
 }
 
-submitButton.addEventListener("click", solution);
+function colorChange(buttonChange) {buttonChange.classList.add("button-pressed");
+    ;
+}
+
+submitButton.addEventListener("click", solution, colorChange);

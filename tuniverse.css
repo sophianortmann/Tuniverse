@@ -37,3 +37,7 @@ iframe {
   top: 850px;
   left: 1500px;
 }
+
+.button-pressed {
+  background-color: white;
+}
