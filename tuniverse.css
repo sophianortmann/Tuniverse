@@ -38,6 +38,6 @@ iframe {
   left: 1500px;
 }
 
-.button-pressed {
+.submit:focus {
   background-color: white;
 }

@@ -1,22 +1,22 @@
-const submitButton = document.querySelector("button.submit");
+document.addEventListener("DOMContentLoaded", initializeTuniverse);
 
-function checkAnswer(selectedAnswer) {
-    if (selectedAnswer.dataset.answer === selectedAnswer.value) {
-        selectedAnswer.classList.add("right-answer");
-    } else {
-        selectedAnswer.classList.add("wrong-answer");
+function initializeTuniverse() {
+
+    const submitButton = document.querySelector("button.submit");
+
+    function checkAnswer(selectedAnswer) {
+        if (selectedAnswer.selectedOptions[0].dataset.correctChoice === '') {
+            selectedAnswer.classList.add("right-answer");
+        } else {
+            selectedAnswer.classList.add("wrong-answer");
+        }
+
     }
 
-}
+    function solution(event) {
+        const selectedAnswers = document.querySelectorAll("select.challenge");
+        selectedAnswers.forEach(checkAnswer);
+    }
 
-function solution(event) {
-    const selectedAnswers = document.querySelectorAll("select.challenge")
-    selectedAnswers.forEach(checkAnswer);
+    submitButton.addEventListener("click", solution);
 }
-
-function colorChange(buttonChange) {
-    submitButton.classList.add("button-pressed");
-}
-
-submitButton.addEventListener("click", solution);
-submitButton.addEventListener("click", colorChange);
