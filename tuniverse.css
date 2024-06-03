@@ -15,12 +15,16 @@ select {
   color: rgb(78, 81, 168);
 }
 
-.right-answer {
-  background-color: green; color: white;
+.hiddenBeforeSolution {
+  display: none;
 }
 
 .wrong-answer {
-  background-color: red; color: white;
+  background-color: red;
+  color: white;
+}
+
+.correctedAnswer {padding: 0.2em 0.5em; border: 0.2rem solid green;
 }
 
 iframe {
@@ -33,10 +37,16 @@ iframe {
   color: rgb(78, 81, 168);
   padding: 20px;
   font-size: 30px;
-  position: sticky;
-  top: 850px;
-  left: 1500px;
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
 }
+
+.results {
+  background-color: rgb(194 217 222)
+}
+
+;
 
 .submit:focus {
   background-color: white;
