@@ -28,11 +28,6 @@ function initializeTuniverse() {
         document.querySelector('.resultDialog').showModal();
     }
 
-    //add spans (with removed class) to correct answers
-
-    /*const correctAnswersAdded = document.querySelector(span);
-    console.log("span");*/
-
     submitButton.addEventListener("click", solution);
 
     const resultsButton = document.querySelector("button.results");

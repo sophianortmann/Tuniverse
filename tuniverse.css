@@ -1,11 +1,11 @@
 body {
   background-color: white;
-  padding: 10px;
+  padding: 100px;
 }
 
 p {
   text-align: center;
-  font-size: 30px;
+  font-size: 30px; font-family: Roboto; font-weight: bold;
 }
 
 select {
@@ -21,7 +21,7 @@ select {
 
 .wrong-answer {
   background-color: red;
-  color: white;
+  color: black;
 }
 
 .correctedAnswer {padding: 0.2em 0.5em; border: 0.2rem solid green;
@@ -33,9 +33,9 @@ iframe {
 }
 
 .submit {
-  background-color: rgb(194 217 222);
+  /*background-color: rgb(194 217 222);
   color: rgb(78, 81, 168);
-  padding: 20px;
+  padding: 20px;*/
   font-size: 30px;
   position: fixed;
   bottom: 32px;
