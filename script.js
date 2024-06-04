@@ -1,10 +1,10 @@
-document.addEventListener("DOMContentLoaded", initializeTuniverse);
+document.addEventListener('DOMContentLoaded', initializeTuniverse);
 let correctAnswers = 0;
 let wrongAnswers = 0;
 
 function initializeTuniverse() {
 
-    const submitButton = document.querySelector("button.submit");
+    const submitButton = document.querySelector('button.submit');
 
     function checkAnswer(selectedAnswer) {
         if (selectedAnswer.selectedOptions[0].dataset.correctChoice === '') {
@@ -13,7 +13,9 @@ function initializeTuniverse() {
             correctAnswer.classList.remove('hiddenBeforeSolution'); // span mit richtiger Antwort sichtbar machen
             correctAnswers += 1;
         } else {
-            selectedAnswer.classList.add("wrong-answer");
+            const showCorrection = selectedAnswer.parentElement.querySelector('.buttonHiddenBeforeSolution');
+            selectedAnswer.remove();
+            showCorrection.classList.remove('buttonHiddenBeforeSolution');
             wrongAnswers += 1;
         }
 

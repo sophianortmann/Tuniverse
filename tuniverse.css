@@ -3,9 +3,15 @@ body {
   padding: 100px;
 }
 
+iframe {
+  border: 1px;
+}
+
 p {
   text-align: center;
-  font-size: 30px; font-family: Roboto; font-weight: bold;
+  font-size: 30px;
+  font-family: Roboto;
+  font-weight: bold;
 }
 
 select {
@@ -19,12 +25,23 @@ select {
   display: none;
 }
 
-.wrong-answer {
-  background-color: red;
-  color: black;
+.buttonHiddenBeforeSolution {
+  display: none;
 }
 
-.correctedAnswer {padding: 0.2em 0.5em; border: 0.2rem solid green;
+.correctedAnswer {
+  padding: 0.2em 0.5em;
+  border: 0.2rem solid green;
+}
+
+.showSolution {
+  padding: 0.2em 0.5em;
+  border: 0.2rem solid red;
+  text-align: center;
+  font-size: 50px;
+  font-family: Roboto;
+  font-weight: bold;
+  background-color: transparent;
 }
 
 iframe {
@@ -32,22 +49,53 @@ iframe {
   position: sticky;
 }
 
-.submit {
-  /*background-color: rgb(194 217 222);
-  color: rgb(78, 81, 168);
-  padding: 20px;*/
-  font-size: 30px;
+
+/*buttons:*/
+.iconButton {
+  font-size: 100px;
   position: fixed;
-  bottom: 32px;
-  right: 32px;
+  bottom: 100px;
+  background-color: transparent;
+  border: transparent;
 }
 
+.submit {
+  right: 80px;
+}
+
+.goBack {
+  left: 80px;
+}
+
+/*kommt wenn man submit button drückt:*/
 .results {
-  background-color: rgb(194 217 222)
+  background-color: rgb(194 217 222);
+  text-align: center;
 }
-
-;
 
 .submit:focus {
   background-color: white;
+}
+
+/*divs:*/
+.transparentBottom {
+  width: 100%;
+  height: 450px;
+  top: 1300px;
+  position: fixed;
+  background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+  display: block;
+  right: 0;
+  bottom: 0;
+}
+
+.transparentTop {
+  width: 100%;
+  height: 450px;
+  bottom: 1000px;
+  position: fixed;
+  background-color: white opacity: 0.5;
+  display: block;
+  right: 0;
+  top: 0;
 }
