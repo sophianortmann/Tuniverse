@@ -16,6 +16,7 @@ function initializeTuniverse() {
             const showCorrection = selectedAnswer.parentElement.querySelector('.buttonHiddenBeforeSolution');
             selectedAnswer.remove();
             showCorrection.classList.remove('buttonHiddenBeforeSolution');
+            document.querySelector('.showSolution').innerText = `yourWrongAnswer`;
             wrongAnswers += 1;
         }
 
@@ -23,7 +24,7 @@ function initializeTuniverse() {
 
     function solution(event) {
         wrongAnswers = 0;
-        const selectedAnswers = document.querySelectorAll("select.challenge");
+        const selectedAnswers = document.querySelectorAll('select.challenge');
         selectedAnswers.forEach(checkAnswer);
 
         document.querySelector('.resultDialogContent').innerText = `Great job! ${Math.round(correctAnswers * 100 / (correctAnswers + wrongAnswers))}% correct.`;
@@ -36,8 +37,6 @@ function initializeTuniverse() {
 
     resultsButton.addEventListener("click", results);
 
-    function results() {
-
-    }
+    console.log(select.challenge);
 
 }
