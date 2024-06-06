@@ -9,12 +9,12 @@ function initializeTuniverse() {
     function checkAnswer(selectedAnswer) {
         let selectedOption = selectedAnswer.selectedOptions[0];
         if (selectedOption.dataset.correctChoice === '') {
-            const correctAnswer = selectedAnswer.parentElement.querySelector('.hiddenBeforeSolution'); // span mit richtiger Antwort
+            const correctAnswer = selectedAnswer.parentElement.parentElement.querySelector('.hiddenBeforeSolution'); // span mit richtiger Antwort
             selectedAnswer.remove();
             correctAnswer.classList.remove('hiddenBeforeSolution'); // span mit richtiger Antwort sichtbar machen
             correctAnswers += 1;
         } else {
-            const showCorrection = selectedAnswer.parentElement.querySelector('.buttonHiddenBeforeSolution');
+            const showCorrection = selectedAnswer.parentElement.parentElement.querySelector('.buttonHiddenBeforeSolution');
             showCorrection.classList.remove('buttonHiddenBeforeSolution');
             selectedAnswer.parentElement.querySelector('.showSolution').textContent = selectedOption.textContent;
             selectedAnswer.remove();
@@ -39,50 +39,52 @@ function initializeTuniverse() {
 
 /*selects styling*/
     /* Look for any elements with the class "custom-select": */
-    x = document.getElementsByClassName("custom-select");
-    l = x.length;
-    for (i = 0; i < l; i++) {
-        selElmnt = x[i].getElementsByTagName("select")[0];
-        ll = selElmnt.length;
+    const customSelect = document.getElementsByClassName("custom-select");
+    const customSelectLength = customSelect.length;
+
+    /* In this block the options will be created */
+
+    for (let i = 0; i < customSelectLength; i++) {
+        selElmnt = customSelect[i].querySelector("select");
+        console.log("selElmnt", {selElmnt})
+        const selectOptionsCount = selElmnt.length;
+        console.log("selectOptionsCount", {selectOptionsCount})
         /* For each element, create a new DIV that will act as the selected item: */
-        a = document.createElement("DIV");
-        a.setAttribute("class", "select-selected");
-        a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-        x[i].appendChild(a);
+        styledSelect = document.createElement("DIV");
+        styledSelect.classList.add("select-selected");
+        customSelect[i].appendChild(styledSelect);
         /* For each element, create a new DIV that will contain the option list: */
-        b = document.createElement("DIV");
-        b.setAttribute("class", "select-items select-hide");
-        for (j = 1; j < ll; j++) {
+        const styledSelectItems = document.createElement("DIV");
+        styledSelectItems.classList.add("select-items");
+        styledSelectItems.classList.add("select-hide");
+        for (let j = 1; j < selectOptionsCount; j++) {
             /* For each option in the original select element,
             create a new DIV that will act as an option item: */
-            c = document.createElement("DIV");
-            c.innerHTML = selElmnt.options[j].innerHTML;
-            c.addEventListener("click", function (e) {
+            const selectOption = document.createElement("DIV");
+            selectOption.innerText = selElmnt.options[j].innerText;
+            selectOption.addEventListener("click", function (e) {
                 /* When an item is clicked, update the original select box,
                 and the selected item: */
-                var y, i, k, s, h, sl, yl;
-                s = this.parentNode.parentNode.getElementsByTagName("select")[0];
-                sl = s.length;
-                h = this.parentNode.previousSibling;
-                for (i = 0; i < sl; i++) {
-                    if (s.options[i].innerHTML == this.innerHTML) {
-                        s.selectedIndex = i;
-                        h.innerHTML = this.innerHTML;
-                        y = this.parentNode.getElementsByClassName("same-as-selected");
-                        yl = y.length;
-                        for (k = 0; k < yl; k++) {
-                            y[k].removeAttribute("class");
-                        }
-                        this.setAttribute("class", "same-as-selected");
+                const selectElement = this.parentNode.parentNode.querySelector("select");
+                const selectOptionsCount = selectElement.length;
+                const customSelect = this.parentNode.previousSibling;
+                for (let i = 0; i < selectOptionsCount; i++) {
+                    if (selectElement.options[i].innerText == this.innerText) {
+                        customSelect.innerText = this.innerText;
+                        const currentlySelected = this.parentNode.querySelector(".same-as-selected");
+                        currentlySelected?.classList.remove("same-as-selected");
+                        this.classList.add("same-as-selected");
                         break;
                     }
                 }
-                h.click();
             });
-            b.appendChild(c);
+            /* Add the created option to the option box */
+            styledSelectItems.appendChild(selectOption);
         }
-        x[i].appendChild(b);
-        a.addEventListener("click", function (e) {
+
+        /* Add the created options box to the html */
+        customSelect[i].appendChild(styledSelectItems);
+        styledSelect.addEventListener("click", function (e) {
             /* When the select box is clicked, close any other select boxes,
             and open/close the current select box: */
             e.stopPropagation();
