@@ -2,54 +2,31 @@ document.addEventListener('DOMContentLoaded', initializeTuniverse);
 let correctAnswers = 0;
 let wrongAnswers = 0;
 
-function initializeTuniverse() {
-
-    const submitButton = document.querySelector('button.submit');
-
-    function checkAnswer(selectedAnswer) {
-        let selectedOption = selectedAnswer.selectedOptions[0];
-        if ('correctChoice' in selectedOption.dataset) {
-            const correctAnswer = selectedAnswer.parentElement.parentElement.querySelector('.hiddenBeforeSolution'); // span mit richtiger Antwort
-            selectedAnswer.remove();
-            correctAnswer.classList.remove('hiddenBeforeSolution'); // span mit richtiger Antwort sichtbar machen
-            correctAnswers += 1;
-        } else {
-            const showCorrection = selectedAnswer.parentElement.parentElement.querySelector('.buttonHiddenBeforeSolution');
-            showCorrection.classList.remove('buttonHiddenBeforeSolution');
-            selectedAnswer.parentElement.querySelector('.showSolution').textContent = selectedOption.textContent;
-            selectedAnswer.remove();
-            wrongAnswers += 1;
-        }
-
-    }
-
-    /*//neu
     function initializeTuniverse() {
 
         const submitButton = document.querySelector('button.submit');
     
         function checkAnswer(selectedAnswer) {
-            let selectedOption = selectedAnswer.selectedOptions[0];
-            if (selectedOption === selectElement.options[i].innerText) {
-                const correctAnswer = selectedAnswer.parentElement.parentElement.querySelector('.hiddenBeforeSolution'); // span mit richtiger Antwort
-                selectedAnswer.remove();
+            if ('correctChoice' in selectedAnswer.dataset) {
+                const correctAnswer = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.hiddenBeforeSolution'); // span mit richtiger Antwort
+                console.log('cc', {correctAnswer});
+                selectedAnswer.parentElement.parentElement.querySelector('.select-selected').remove();
                 correctAnswer.classList.remove('hiddenBeforeSolution'); // span mit richtiger Antwort sichtbar machen
                 correctAnswers += 1;
             } else {
-                const showCorrection = selectedAnswer.parentElement.parentElement.querySelector('.buttonHiddenBeforeSolution');
+                const showCorrection = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.buttonHiddenBeforeSolution');
                 showCorrection.classList.remove('buttonHiddenBeforeSolution');
-                selectedAnswer.parentElement.querySelector('.showSolution').textContent = selectedOption.textContent;
-                selectedAnswer.remove();
+                selectedAnswer.parentElement.parentElement.parentElement.querySelector('.showSolution').textContent = selectedAnswer.textContent;
+                selectedAnswer.parentElement.parentElement.querySelector('.select-selected').remove();
                 wrongAnswers += 1;
             }
-    
-        } //neu*/
+        }
 
 
 
     function solution(event) {
         wrongAnswers = 0;
-        const selectedAnswers = document.querySelectorAll('select.challenge');
+        const selectedAnswers = document.querySelectorAll('.same-as-selected');
         selectedAnswers.forEach(checkAnswer);
 
         document.querySelector('.resultDialogContent').textContent = `Great job! ${Math.round(correctAnswers * 100 / (correctAnswers + wrongAnswers))}% correct.`;
@@ -69,8 +46,8 @@ function initializeTuniverse() {
     /* In this block the options will be created */
 
     for (let i = 0; i < customSelectLength; i++) {
-        const selElmnt = customSelect[i].querySelector("select");
-        const selectOptionsCount = selElmnt.length;
+        const selectElement = customSelect[i].querySelector("select");
+        const selectOptionsCount = selectElement.length;
         /* For each element, create a new DIV that will act as the selected item: */
         const styledSelect = document.createElement("DIV");
         styledSelect.classList.add("select-selected");
@@ -82,9 +59,12 @@ function initializeTuniverse() {
         for (let j = 1; j < selectOptionsCount; j++) {
             /* For each option in the original select element,
             create a new DIV that will act as an option item: */
-            const selectOption = document.createElement("DIV");
-            selectOption.innerText = selElmnt.options[j].innerText;
-            selectOption.addEventListener("click", function (e) {
+            const styledSelectOption = document.createElement("DIV");
+            styledSelectOption.innerText = selectElement.options[j].innerText;
+            if ('correctChoice' in selectElement.options[j].dataset) {
+                styledSelectOption.dataset.correctChoice = true;
+            }
+            styledSelectOption.addEventListener("click", function (e) {
                 /* When an item is clicked, update the original select box,
                 and the selected item: */
                 const selectElement = this.parentNode.parentNode.querySelector("select");
@@ -101,7 +81,7 @@ function initializeTuniverse() {
                 }
             });
             /* Add the created option to the option box */
-            styledSelectItems.appendChild(selectOption);
+            styledSelectItems.appendChild(styledSelectOption);
         }
 
         /* Add the created options box to the html */
@@ -119,7 +99,7 @@ function initializeTuniverse() {
     function closeAllSelect(elmnt) {
         /* A function that will close all select boxes in the document,
         except the current select box: */
-        var x, i, xl, yl, arrNo = [];
+        var x, i, xl, arrNo = [];
         x = document.getElementsByClassName("select-items");
         let currentlySelected = document.getElementsByClassName("select-selected");
         xl = x.length;
@@ -141,4 +121,15 @@ function initializeTuniverse() {
     /* If the user clicks anywhere outside the select box,
     then close all select boxes: */
     document.addEventListener("click", closeAllSelect);
+}
+
+//functions in selectChallenge.html
+
+const buttonToFirstChallenge = document.querySelector("div.challenge1");
+
+buttonToFirstChallenge.addEventListener("click", goToFirstChallenge
+);
+
+function goToFirstChallenge () {
+    open ('https://laughing-space-goggles-x59w9x7r7qjg36j4p-3000.app.github.dev/firstChallenge.html', '_self');
 }

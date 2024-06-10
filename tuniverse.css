@@ -22,10 +22,6 @@ p {
   display: none; /*hide original SELECT element:*/
 }
 
-.select-selected {
-  background-color: rgb(194 217 222);
-}
-
 /*style the items (options), including the selected item:*/
 .select-items div,.select-selected {
   font-size: 50px;
@@ -35,6 +31,7 @@ p {
   padding: 30px 16px;
   border: 1px solid rgba(0,0,0,0.1);
   border-radius: 30px;
+  background-color: rgb(194 217 222)
 }
 
 /*style items (options):*/
@@ -152,3 +149,25 @@ dialog {background-color: rgb(194 217 222);
   top: 0;
   z-index: 4;
 }
+
+/*styling of selectChallenge.html*/
+
+.heading {
+  color: rgb(78, 81, 168);
+}
+
+.challengeBox {position: absolute;
+  top: 400;
+  font-size: 50px;
+  font-family: Roboto;
+  font-weight: bold;
+  width: 800px; height: 1500px;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 50px;
+  background-color: rgb(194 217 222);
+}
+
+  .challenge1 {width: 800px; height: 500px; position: absolute; top: 0; left: 0; background-color: red; border-top-left-radius: 50px;
+    border-top-right-radius: 50px;}
+
+  .challengeHeading {padding: 10px;}
