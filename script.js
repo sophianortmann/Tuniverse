@@ -8,7 +8,7 @@ function initializeTuniverse() {
 
     function checkAnswer(selectedAnswer) {
         let selectedOption = selectedAnswer.selectedOptions[0];
-        if (selectedOption.dataset.correctChoice === '') {
+        if ('correctChoice' in selectedOption.dataset) {
             const correctAnswer = selectedAnswer.parentElement.parentElement.querySelector('.hiddenBeforeSolution'); // span mit richtiger Antwort
             selectedAnswer.remove();
             correctAnswer.classList.remove('hiddenBeforeSolution'); // span mit richtiger Antwort sichtbar machen
@@ -22,6 +22,30 @@ function initializeTuniverse() {
         }
 
     }
+
+    /*//neu
+    function initializeTuniverse() {
+
+        const submitButton = document.querySelector('button.submit');
+    
+        function checkAnswer(selectedAnswer) {
+            let selectedOption = selectedAnswer.selectedOptions[0];
+            if (selectedOption === selectElement.options[i].innerText) {
+                const correctAnswer = selectedAnswer.parentElement.parentElement.querySelector('.hiddenBeforeSolution'); // span mit richtiger Antwort
+                selectedAnswer.remove();
+                correctAnswer.classList.remove('hiddenBeforeSolution'); // span mit richtiger Antwort sichtbar machen
+                correctAnswers += 1;
+            } else {
+                const showCorrection = selectedAnswer.parentElement.parentElement.querySelector('.buttonHiddenBeforeSolution');
+                showCorrection.classList.remove('buttonHiddenBeforeSolution');
+                selectedAnswer.parentElement.querySelector('.showSolution').textContent = selectedOption.textContent;
+                selectedAnswer.remove();
+                wrongAnswers += 1;
+            }
+    
+        } //neu*/
+
+
 
     function solution(event) {
         wrongAnswers = 0;
@@ -45,12 +69,10 @@ function initializeTuniverse() {
     /* In this block the options will be created */
 
     for (let i = 0; i < customSelectLength; i++) {
-        selElmnt = customSelect[i].querySelector("select");
-        console.log("selElmnt", {selElmnt})
+        const selElmnt = customSelect[i].querySelector("select");
         const selectOptionsCount = selElmnt.length;
-        console.log("selectOptionsCount", {selectOptionsCount})
         /* For each element, create a new DIV that will act as the selected item: */
-        styledSelect = document.createElement("DIV");
+        const styledSelect = document.createElement("DIV");
         styledSelect.classList.add("select-selected");
         customSelect[i].appendChild(styledSelect);
         /* For each element, create a new DIV that will contain the option list: */
@@ -97,16 +119,16 @@ function initializeTuniverse() {
     function closeAllSelect(elmnt) {
         /* A function that will close all select boxes in the document,
         except the current select box: */
-        var x, y, i, xl, yl, arrNo = [];
+        var x, i, xl, yl, arrNo = [];
         x = document.getElementsByClassName("select-items");
-        y = document.getElementsByClassName("select-selected");
+        let currentlySelected = document.getElementsByClassName("select-selected");
         xl = x.length;
-        yl = y.length;
-        for (i = 0; i < yl; i++) {
-            if (elmnt == y[i]) {
+        let currentlySelectedCount = currentlySelected.length;
+        for (i = 0; i < currentlySelectedCount; i++) {
+            if (elmnt == currentlySelected[i]) {
                 arrNo.push(i)
             } else {
-                y[i].classList.remove("select-arrow-active");
+                currentlySelected[i].classList.remove("select-arrow-active");
             }
         }
         for (i = 0; i < xl; i++) {
