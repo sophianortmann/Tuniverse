@@ -2,31 +2,36 @@ document.addEventListener('DOMContentLoaded', initializeTuniverse);
 let correctAnswers = 0;
 let wrongAnswers = 0;
 
-    function initializeTuniverse() {
+function initializeTuniverse() {
 
-        const submitButton = document.querySelector('button.submit');
-    
-        function checkAnswer(selectedAnswer) {
-            if ('correctChoice' in selectedAnswer.dataset) {
-                const correctAnswer = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.hiddenBeforeSolution'); // span mit richtiger Antwort
-                console.log('cc', {correctAnswer});
-                selectedAnswer.parentElement.parentElement.querySelector('.select-selected').remove();
-                correctAnswer.classList.remove('hiddenBeforeSolution'); // span mit richtiger Antwort sichtbar machen
-                correctAnswers += 1;
-            } else {
-                const showCorrection = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.buttonHiddenBeforeSolution');
-                showCorrection.classList.remove('buttonHiddenBeforeSolution');
-                selectedAnswer.parentElement.parentElement.parentElement.querySelector('.showSolution').textContent = selectedAnswer.textContent;
-                selectedAnswer.parentElement.parentElement.querySelector('.select-selected').remove();
-                wrongAnswers += 1;
-            }
+    const submitButton = document.querySelector('button.submit');
+
+    function checkAnswer(selectItems) {
+        const selectedAnswer = selectItems.querySelector('.same-as-selected');
+        if (selectedAnswer === null) {
+            console.log("IS NULL");
+            wrongAnswers += 1;
+            
+        } else if ('correctChoice' in selectedAnswer.dataset) {
+            const correctAnswer = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.hiddenBeforeSolution'); // span mit richtiger Antwort
+            console.log('cc', { correctAnswer });
+            selectedAnswer.parentElement.parentElement.querySelector('.select-selected').remove();
+            correctAnswer.classList.remove('hiddenBeforeSolution'); // span mit richtiger Antwort sichtbar machen
+            correctAnswers += 1;
+        } else {
+            const showCorrection = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.buttonHiddenBeforeSolution');
+            showCorrection.classList.remove('buttonHiddenBeforeSolution');
+            selectedAnswer.parentElement.parentElement.parentElement.querySelector('.showSolution').textContent = selectedAnswer.textContent;
+            selectedAnswer.parentElement.parentElement.querySelector('.select-selected').remove();
+            wrongAnswers += 1;
         }
+    }
 
 
 
     function solution(event) {
         wrongAnswers = 0;
-        const selectedAnswers = document.querySelectorAll('.same-as-selected');
+        const selectedAnswers = document.querySelectorAll('.select-items');
         selectedAnswers.forEach(checkAnswer);
 
         document.querySelector('.resultDialogContent').textContent = `Great job! ${Math.round(correctAnswers * 100 / (correctAnswers + wrongAnswers))}% correct.`;
@@ -35,10 +40,10 @@ let wrongAnswers = 0;
 
     submitButton.addEventListener("click", solution);
 
-    const resultsButton = document.querySelector("button.results");
+    //const resultsButton = document.querySelector("button.results");
 
 
-/*selects styling*/
+    /*selects styling*/
     /* Look for any elements with the class "custom-select": */
     const customSelect = document.getElementsByClassName("custom-select");
     const customSelectLength = customSelect.length;
@@ -121,15 +126,4 @@ let wrongAnswers = 0;
     /* If the user clicks anywhere outside the select box,
     then close all select boxes: */
     document.addEventListener("click", closeAllSelect);
-}
-
-//functions in selectChallenge.html
-
-const buttonToFirstChallenge = document.querySelector("div.challenge1");
-
-buttonToFirstChallenge.addEventListener("click", goToFirstChallenge
-);
-
-function goToFirstChallenge () {
-    open ('https://laughing-space-goggles-x59w9x7r7qjg36j4p-3000.app.github.dev/firstChallenge.html', '_self');
 }
