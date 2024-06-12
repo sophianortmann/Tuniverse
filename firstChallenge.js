@@ -9,15 +9,15 @@ function initializeTuniverse() {
     function checkAnswer(selectItems) {
         const selectedAnswer = selectItems.querySelector('.same-as-selected');
         if (selectedAnswer === null) {
-            console.log("IS NULL");
             wrongAnswers += 1;
-            
+        
         } else if ('correctChoice' in selectedAnswer.dataset) {
             const correctAnswer = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.hiddenBeforeSolution'); // span mit richtiger Antwort
             console.log('cc', { correctAnswer });
             selectedAnswer.parentElement.parentElement.querySelector('.select-selected').remove();
             correctAnswer.classList.remove('hiddenBeforeSolution'); // span mit richtiger Antwort sichtbar machen
             correctAnswers += 1;
+            
         } else {
             const showCorrection = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.buttonHiddenBeforeSolution');
             showCorrection.classList.remove('buttonHiddenBeforeSolution');
@@ -27,7 +27,7 @@ function initializeTuniverse() {
         }
     }
 
-
+// function to check if the submitted answer is right or wrong and to show pop-up with percentage of correct answers:
 
     function solution(event) {
         wrongAnswers = 0;
@@ -40,7 +40,16 @@ function initializeTuniverse() {
 
     submitButton.addEventListener("click", solution);
 
-    //const resultsButton = document.querySelector("button.results");
+    // function to show solution when button with submitted wrong answer is clicked:
+    
+    const showSolutionButton = document.querySelector('button.showSolution');
+
+    showSolutionButton.addEventListener('click', showSolution);
+
+    function showSolution () {
+        document.querySelector('.showSolutionDialogContent').textContent = `The correct answer is: ${span.correctedAnswer.textContent}`;
+        document.querySelector('.showSolutionDialog').showModal();
+    }
 
 
     /*selects styling*/
