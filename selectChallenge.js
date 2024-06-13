@@ -6,5 +6,5 @@ buttonToFirstChallenge.addEventListener("click", goToFirstChallenge
 );
 
 function goToFirstChallenge() {
-    open('/firstChallenge.html', '_self');
+    open('./firstChallenge.html', '_self');
 }
