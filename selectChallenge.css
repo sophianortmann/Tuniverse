@@ -57,8 +57,21 @@
     .challengeHeading {
       position: relative;
       text-align: center;
-      font-size: 50px;
+      font-size: 70px;
       font-family: Roboto;
       font-weight: bold;
       color: rgb(78, 81, 168);
+    }
+
+    .songTitle {
+      position: absolute;
+      left: 300px;
+      top: 200px;
+    }
+
+    .songCover1 {
+      position: absolute;
+      left: 50px;
+      top: 200px;
+      width: 200px;
     }
