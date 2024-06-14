@@ -9,40 +9,62 @@ function initializeTuniverse() {
     let correctAnswers = 0;
     let wrongAnswers = 0;
 
+    //function to check answer
+
     function checkAnswer(selectItems) {
         const selectedAnswer = selectItems.querySelector('.same-as-selected');
+
+        // function to show solution when button with submitted wrong answer is clicked:
+
+        const showSolutionButton = selectItems.parentElement.parentElement.querySelector('button.showSolution');
+        const correctAnswer = selectItems.parentElement.parentElement.querySelector('.correctedAnswerHidden'); // span mit richtiger Antwort
+
+        showSolutionButton.addEventListener('click', showSolution);
+
+        function showSolution() {
+            document.querySelector('.showSolutionDialogContent').textContent = `The correct answer is: ${correctAnswer.textContent}`;
+            document.querySelector('.showSolutionDialog').showModal();
+        }
 
         if (selectedAnswer === null) {
             wrongAnswers += 1;
             const showSolutionButton = selectItems.parentElement.parentElement.querySelector('button.showSolution');
             showSolutionButton.classList.remove('buttoncorrectedAnswerHidden'); // show red button
-            selectItems.parentElement.querySelector('.select-selected').remove(); // remove sytled select div 
-            showSolutionButton.textContent='';
-            
+            selectItems.parentElement.querySelector('.select-selected').classList.add('select-hide'); // remove sytled select div 
+            showSolutionButton.textContent = '';
+
         } else if ('correctChoice' in selectedAnswer.dataset) {
             const correctAnswer = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.correctedAnswerHidden'); // span mit richtiger Antwort
-            selectedAnswer.parentElement.parentElement.querySelector('.select-selected').remove();
+            selectedAnswer.parentElement.parentElement.querySelector('.select-selected').classList.add('select-hide');
             correctAnswer.classList.remove('correctedAnswerHidden'); // span mit richtiger Antwort sichtbar machen
             correctAnswers += 1;
-   
+
         } else {
             const showCorrection = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.buttoncorrectedAnswerHidden');
             showCorrection.classList.remove('buttoncorrectedAnswerHidden');
             selectedAnswer.parentElement.parentElement.parentElement.querySelector('.showSolution').textContent = selectedAnswer.textContent;
             selectedAnswer.parentElement.parentElement.querySelector('.select-selected').remove();
             wrongAnswers += 1;
+        }
 
-            // function to show solution when button with submitted wrong answer is clicked:
-    
-    const showSolutionButton = selectItems.parentElement.parentElement.querySelector('button.showSolution');
-    const correctAnswer = selectItems.parentElement.parentElement.querySelector('.correctedAnswerHidden'); // span mit richtiger Antwort
+        // function of tryAgain button
 
-    showSolutionButton.addEventListener('click', showSolution);
+        const tryAgainButton = document.querySelector('button.tryAgain');
+        tryAgainButton.addEventListener('click', tryAgain);
 
-    function showSolution () {
-        document.querySelector('.showSolutionDialogContent').textContent = `The correct answer is: ${correctAnswer.textContent}`;
-        document.querySelector('.showSolutionDialog').showModal();
-    }
+        function tryAgain() {
+            if (showSolutionButton !== null) {
+
+                console.log('jippie');
+            }
+
+            /*if ('correctChoice' in selectedAnswer.dataset) {
+                console.log('select nicht nochmal anzeigen');
+            } else if (selectedAnswer === null) {
+                console.log('select nochmal anzeigen');
+            } else {
+                console.log('select nochmal anzeigen');
+            }*/
         }
     }
 
@@ -75,7 +97,7 @@ function initializeTuniverse() {
 
     const goBackButton = document.querySelector('button.goBack');
     goBackButton.addEventListener('click', goBack)
-    
+
     function goBack() {
         open('./selectChallenge.html', '_self');
     }
