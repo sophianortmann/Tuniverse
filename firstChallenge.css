@@ -130,6 +130,10 @@ iframe {
   display: none;
 }
 
+.hide {
+  display: none;
+}
+
 /*kommt wenn man submit button drückt:*/
 
 dialog {background-color: rgb(194 217 222);

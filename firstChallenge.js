@@ -30,12 +30,12 @@ function initializeTuniverse() {
             wrongAnswers += 1;
             const showSolutionButton = selectItems.parentElement.parentElement.querySelector('button.showSolution');
             showSolutionButton.classList.remove('buttoncorrectedAnswerHidden'); // show red button
-            selectItems.parentElement.querySelector('.select-selected').classList.add('select-hide'); // remove sytled select div 
+            selectItems.parentElement.querySelector('.select-selected').classList.add('hide'); // remove sytled select div 
             showSolutionButton.textContent = '';
 
         } else if ('correctChoice' in selectedAnswer.dataset) {
             const correctAnswer = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.correctedAnswerHidden'); // span mit richtiger Antwort
-            selectedAnswer.parentElement.parentElement.querySelector('.select-selected').classList.add('select-hide');
+            selectedAnswer.parentElement.parentElement.querySelector('.select-selected').remove();
             correctAnswer.classList.remove('correctedAnswerHidden'); // span mit richtiger Antwort sichtbar machen
             correctAnswers += 1;
 
@@ -43,7 +43,7 @@ function initializeTuniverse() {
             const showCorrection = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.buttoncorrectedAnswerHidden');
             showCorrection.classList.remove('buttoncorrectedAnswerHidden');
             selectedAnswer.parentElement.parentElement.parentElement.querySelector('.showSolution').textContent = selectedAnswer.textContent;
-            selectedAnswer.parentElement.parentElement.querySelector('.select-selected').remove();
+            selectedAnswer.parentElement.parentElement.querySelector('.select-selected').classList.add('hide');
             wrongAnswers += 1;
         }
 
@@ -53,7 +53,13 @@ function initializeTuniverse() {
         tryAgainButton.addEventListener('click', tryAgain);
 
         function tryAgain() {
-            if (showSolutionButton !== null) {
+            if (showSolutionButton !== null) { // d.h. wenn der button existiert
+                showSolutionButton.classList.add('hide');
+                selectItems.parentElement.querySelector('.select-selected').classList.remove('hide');
+                tryAgainButton.classList.add ('hide');
+                submitButton.classList.remove ('submitHidden');
+
+                //submitButton.addEventListener('click', checkAnswer;)
 
                 console.log('jippie');
             }
