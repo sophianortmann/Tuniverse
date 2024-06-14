@@ -11,16 +11,20 @@ function initializeTuniverse() {
 
     function checkAnswer(selectItems) {
         const selectedAnswer = selectItems.querySelector('.same-as-selected');
+
         if (selectedAnswer === null) {
             wrongAnswers += 1;
-
+            const showSolutionButton = selectItems.parentElement.parentElement.querySelector('button.showSolution');
+            showSolutionButton.classList.remove('buttoncorrectedAnswerHidden'); // show red button
+            selectItems.parentElement.querySelector('.select-selected').remove(); // remove sytled select div 
+            showSolutionButton.textContent='';
+            
         } else if ('correctChoice' in selectedAnswer.dataset) {
             const correctAnswer = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.correctedAnswerHidden'); // span mit richtiger Antwort
-            //console.log('cc', { correctAnswer });
             selectedAnswer.parentElement.parentElement.querySelector('.select-selected').remove();
             correctAnswer.classList.remove('correctedAnswerHidden'); // span mit richtiger Antwort sichtbar machen
             correctAnswers += 1;
-            
+   
         } else {
             const showCorrection = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.buttoncorrectedAnswerHidden');
             showCorrection.classList.remove('buttoncorrectedAnswerHidden');
@@ -30,13 +34,12 @@ function initializeTuniverse() {
 
             // function to show solution when button with submitted wrong answer is clicked:
     
-    const showSolutionButton = selectedAnswer.parentElement.parentElement.parentElement.querySelector('button.showSolution');
-    const correctAnswer = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.correctedAnswerHidden'); // span mit richtiger Antwort
+    const showSolutionButton = selectItems.parentElement.parentElement.querySelector('button.showSolution');
+    const correctAnswer = selectItems.parentElement.parentElement.querySelector('.correctedAnswerHidden'); // span mit richtiger Antwort
 
     showSolutionButton.addEventListener('click', showSolution);
 
     function showSolution () {
-        //console.log(correctAnswer);
         document.querySelector('.showSolutionDialogContent').textContent = `The correct answer is: ${correctAnswer.textContent}`;
         document.querySelector('.showSolutionDialog').showModal();
     }
@@ -61,11 +64,20 @@ function initializeTuniverse() {
         const submitButton = document.querySelector('button.submit');
         submitButton.classList.add('submitHidden');
 
-        const tryAgainButton = document.querySelector('button.tryAgain')
-        const nextChallengeButton = document.querySelector('button.nextChallenge')
+        const tryAgainButton = document.querySelector('button.tryAgain');
+        const nextChallengeButton = document.querySelector('button.nextChallenge');
 
-        tryAgainButton.classList.remove('tryAgainHidden')
-        nextChallengeButton.classList.remove('nextChallengeHidden')
+        tryAgainButton.classList.remove('tryAgainHidden');
+        nextChallengeButton.classList.remove('nextChallengeHidden');
+    }
+
+    // goBack Button function
+
+    const goBackButton = document.querySelector('button.goBack');
+    goBackButton.addEventListener('click', goBack)
+    
+    function goBack() {
+        open('./selectChallenge.html', '_self');
     }
 
 
