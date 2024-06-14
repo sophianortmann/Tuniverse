@@ -1,10 +1,13 @@
+
 document.addEventListener('DOMContentLoaded', initializeTuniverse);
-let correctAnswers = 0;
-let wrongAnswers = 0;
 
 function initializeTuniverse() {
 
+    //function to check if the submitted answer is right or wrong and to calculate the percentage of right answers
+
     const submitButton = document.querySelector('button.submit');
+    let correctAnswers = 0;
+    let wrongAnswers = 0;
 
     function checkAnswer(selectItems) {
         const selectedAnswer = selectItems.querySelector('.same-as-selected');
@@ -12,43 +15,57 @@ function initializeTuniverse() {
             wrongAnswers += 1;
         
         } else if ('correctChoice' in selectedAnswer.dataset) {
-            const correctAnswer = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.hiddenBeforeSolution'); // span mit richtiger Antwort
+            const correctAnswer = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.correctedAnswerHidden'); // span mit richtiger Antwort
             console.log('cc', { correctAnswer });
             selectedAnswer.parentElement.parentElement.querySelector('.select-selected').remove();
-            correctAnswer.classList.remove('hiddenBeforeSolution'); // span mit richtiger Antwort sichtbar machen
+            correctAnswer.classList.remove('correctedAnswerHidden'); // span mit richtiger Antwort sichtbar machen
             correctAnswers += 1;
             
         } else {
-            const showCorrection = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.buttonHiddenBeforeSolution');
-            showCorrection.classList.remove('buttonHiddenBeforeSolution');
+            const showCorrection = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.buttoncorrectedAnswerHidden');
+            showCorrection.classList.remove('buttoncorrectedAnswerHidden');
             selectedAnswer.parentElement.parentElement.parentElement.querySelector('.showSolution').textContent = selectedAnswer.textContent;
             selectedAnswer.parentElement.parentElement.querySelector('.select-selected').remove();
             wrongAnswers += 1;
+
+            // function to show solution when button with submitted wrong answer is clicked:
+    
+    const showSolutionButton = document.querySelector('button.showSolution');
+    const correctAnswer = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.correctedAnswerHidden'); // span mit richtiger Antwort
+
+    showSolutionButton.addEventListener('click', showSolution);
+
+    function showSolution () {
+        //console.log(correctAnswer);
+        document.querySelector('.showSolutionDialogContent').textContent = `The correct answer is: ${correctAnswer.textContent}`;
+        document.querySelector('.showSolutionDialog').showModal();
+    }
         }
     }
 
-// function to check if the submitted answer is right or wrong and to show pop-up with percentage of correct answers:
+    submitButton.addEventListener("click", solution);
 
     function solution(event) {
+
+        // function to show pop-up with percentage of correct answers:
+
         wrongAnswers = 0;
         const selectedAnswers = document.querySelectorAll('.select-items');
         selectedAnswers.forEach(checkAnswer);
 
         document.querySelector('.resultDialogContent').textContent = `Great job! ${Math.round(correctAnswers * 100 / (correctAnswers + wrongAnswers))}% correct.`;
         document.querySelector('.resultDialog').showModal();
-    }
 
-    submitButton.addEventListener("click", solution);
+        //function to hide submit-button and instead show 'try again' and 'next challenge' button
 
-    // function to show solution when button with submitted wrong answer is clicked:
-    
-    const showSolutionButton = document.querySelector('button.showSolution');
+        const submitButton = document.querySelector('button.submit');
+        submitButton.classList.add('submitHidden');
 
-    showSolutionButton.addEventListener('click', showSolution);
+        const tryAgainButton = document.querySelector('button.tryAgain')
+        const nextChallengeButton = document.querySelector('button.nextChallenge')
 
-    function showSolution () {
-        document.querySelector('.showSolutionDialogContent').textContent = `The correct answer is: ${span.correctedAnswer.textContent}`;
-        document.querySelector('.showSolutionDialog').showModal();
+        tryAgainButton.classList.remove('tryAgainHidden')
+        nextChallengeButton.classList.remove('nextChallengeHidden')
     }
 
 
