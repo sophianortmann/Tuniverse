@@ -13,10 +13,10 @@ function initializeTuniverse() {
         const selectedAnswer = selectItems.querySelector('.same-as-selected');
         if (selectedAnswer === null) {
             wrongAnswers += 1;
-        
+
         } else if ('correctChoice' in selectedAnswer.dataset) {
             const correctAnswer = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.correctedAnswerHidden'); // span mit richtiger Antwort
-            console.log('cc', { correctAnswer });
+            //console.log('cc', { correctAnswer });
             selectedAnswer.parentElement.parentElement.querySelector('.select-selected').remove();
             correctAnswer.classList.remove('correctedAnswerHidden'); // span mit richtiger Antwort sichtbar machen
             correctAnswers += 1;
@@ -30,7 +30,7 @@ function initializeTuniverse() {
 
             // function to show solution when button with submitted wrong answer is clicked:
     
-    const showSolutionButton = document.querySelector('button.showSolution');
+    const showSolutionButton = selectedAnswer.parentElement.parentElement.parentElement.querySelector('button.showSolution');
     const correctAnswer = selectedAnswer.parentElement.parentElement.parentElement.querySelector('.correctedAnswerHidden'); // span mit richtiger Antwort
 
     showSolutionButton.addEventListener('click', showSolution);
